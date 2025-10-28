@@ -1,24 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./input.module.scss";
 
 interface InputTypes {
   placeholder: string;
-  initialValue?: string | number;
+  value: string;
+  setValue: (value: string) => void;
 }
 
-export default function Input({ placeholder, initialValue }: InputTypes) {
-  const [inputValue, setInputValue] = useState(initialValue);
-
+export default function Input({ placeholder, value, setValue }: InputTypes) {
   return (
     <div className={styles.container}>
       <input
         placeholder={placeholder}
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
       />
-      <button onClick={() => setInputValue("")}>X</button>
+      <button onClick={() => setValue("")}>X</button>
     </div>
   );
 }
