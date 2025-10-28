@@ -1,31 +1,30 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./select.module.scss";
 
 interface SelectTypes {
   label: string;
   options: string[];
+  value: string;
+  setValue: (value: string) => void;
 }
 
-export default function Select({ label, options }: SelectTypes) {
-  const [selectValue, setSelectValue] = useState("no category");
-
-  const optionsList = options.map((option, index) => (
-    <option key={index} onClick={() => setSelectValue(option)}>
-      {option}
-    </option>
-  ));
-
+export default function Select({
+  label,
+  options,
+  value,
+  setValue,
+}: SelectTypes) {
   return (
     <div className={styles.container}>
       <label>
         {label}
-        <select>
-          <option onClick={() => setSelectValue("no category")}>
-            {selectValue}
-          </option>
-          {optionsList}
+        <select value={value} onChange={(e) => setValue(e.target.value)}>
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
       </label>
     </div>
