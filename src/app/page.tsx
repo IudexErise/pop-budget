@@ -63,6 +63,7 @@ export default function Home() {
             return (
               <div key={record.id}>
                 <span>Amount :{record.amount}/</span>
+                <span>USD amount :{record.convertedAmount}/</span>
                 <span>Currency :{record.currency}/</span>
                 <span>Category :{record.category}/</span>
                 <span>Date :{record.date}/</span>

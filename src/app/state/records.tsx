@@ -1,9 +1,11 @@
+import axios from "axios";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface Record {
   id: number;
   amount: string;
+  convertedAmount: string;
   currency: string;
   category: string;
   description: string;
@@ -12,6 +14,7 @@ interface Record {
 
 interface StoreState {
   amount: string;
+  convertedAmount: string;
   currency: string;
   category: string;
   description: string;
@@ -23,7 +26,7 @@ interface StoreState {
   setCategory: (value: string) => void;
   setDescription: (value: string) => void;
   setDate: (value: string) => void;
-  addRecord: () => void;
+  addRecord: () => Promise<void>;
 }
 
 function formatDate(date: string) {
@@ -35,10 +38,23 @@ function getToday() {
   return new Date().toISOString().split("T")[0];
 }
 
+async function convertCurrency(currency: string, amount: string) {
+  try {
+    const res = await axios.get(
+      `https://v6.exchangerate-api.com/v6/abb89f23a483485679372e28/latest/${currency}`
+    );
+    return (res.data.conversion_rates.USD * Number(amount)).toFixed(2);
+  } catch {
+    alert("Convert failed");
+    return 0;
+  }
+}
+
 export const recordsStore = create<StoreState>()(
   persist(
     (set) => ({
       amount: "",
+      convertedAmount: "",
       currency: "",
       category: "",
       description: "",
@@ -51,26 +67,34 @@ export const recordsStore = create<StoreState>()(
       setDescription: (value) => set({ description: value }),
       setDate: (value) => set({ date: value }),
 
-      addRecord: () =>
-        set((state) => {
-          const newRecord: Record = {
-            id: Date.now(),
-            amount: state.amount,
-            currency: state.currency,
-            category: state.category,
-            description: state.description,
-            date: formatDate(state.date),
-          };
+      addRecord: async () => {
+        const state = recordsStore.getState();
 
-          return {
-            records: [...state.records, newRecord],
-            currency: "",
-            category: "",
-            amount: "",
-            description: "",
-            date: getToday(),
-          };
-        }),
+        const convertedAmount =
+          state.currency === "USD"
+            ? state.amount
+            : await convertCurrency(state.currency, state.amount);
+
+        const newRecord: Record = {
+          id: Date.now(),
+          amount: state.amount,
+          convertedAmount: convertedAmount.toString(),
+          currency: state.currency,
+          category: state.category,
+          description: state.description,
+          date: formatDate(state.date),
+        };
+
+        set({
+          records: [...state.records, newRecord],
+          amount: "",
+          convertedAmount: "",
+          currency: "",
+          category: "",
+          description: "",
+          date: getToday(),
+        });
+      },
     }),
     {
       name: "MyRecords",
