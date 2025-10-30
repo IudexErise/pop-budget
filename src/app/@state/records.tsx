@@ -27,6 +27,7 @@ interface StoreState {
   setDescription: (value: string) => void;
   setDate: (value: string) => void;
   addRecord: () => Promise<void>;
+  deleteRecord: (id: number) => void;
 }
 
 function formatDate(date: string) {
@@ -46,7 +47,7 @@ async function convertCurrency(currency: string, amount: string) {
     return (res.data.conversion_rates.USD * Number(amount)).toFixed(2);
   } catch {
     alert("Convert failed");
-    return 0;
+    return "0";
   }
 }
 
@@ -95,6 +96,11 @@ export const recordsStore = create<StoreState>()(
           date: getToday(),
         });
       },
+
+      deleteRecord: (id: number) =>
+        set((state) => ({
+          records: state.records.filter((record) => record.id !== id),
+        })),
     }),
     {
       name: "MyRecords",
