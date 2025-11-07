@@ -7,6 +7,7 @@ interface InputTypes {
   value: string;
   setValue: (value: string) => void;
   type: string;
+  readonly?: boolean;
 }
 
 export default function Input({
@@ -14,6 +15,7 @@ export default function Input({
   value,
   setValue,
   type,
+  readonly,
 }: InputTypes) {
   return (
     <div className={styles.container}>
@@ -22,8 +24,11 @@ export default function Input({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         type={type}
+        readOnly={readonly}
       />
-      <button onClick={() => setValue("")}>X</button>
+      <button onClick={() => setValue("")} disabled={readonly}>
+        X
+      </button>
     </div>
   );
 }
