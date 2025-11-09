@@ -76,7 +76,6 @@ export default function Edit() {
           value={amount}
           setValue={setAmount}
           type="number"
-          readonly={true}
         />
         <Input
           placeholder="Converted amount"
@@ -85,7 +84,12 @@ export default function Edit() {
           type="number"
           readonly={true}
         />
-        <Calendar label="Purchase date" value={date} setValue={setDate} />
+        <Calendar
+          label="Purchase date"
+          value={date}
+          setValue={setDate}
+          max={new Date().toISOString().split("T")[0]}
+        />
         <Select
           label="Category"
           options={["", "food", "drink", "delivery"]}

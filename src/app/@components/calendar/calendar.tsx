@@ -1,23 +1,33 @@
 "use client";
 
-import styles from "./calendar.module.scss";
+/* import styles from "./calendar.module.scss"; */
 
-interface CalendarTypes {
+interface CalendarProps {
   label: string;
-  value: string;
-  setValue: (value: string) => void;
+  value: number;
+  setValue: (v: number) => void;
+  max?: string;
 }
 
-export default function Calendar({ label, value, setValue }: CalendarTypes) {
+export default function Calendar({
+  label,
+  value,
+  setValue,
+  max,
+}: CalendarProps) {
+  const formatted = new Date(value).toISOString().split("T")[0];
+
   return (
-    <div className={styles.container}>
-      <label htmlFor="date">{label}</label>
+    <label>
+      {label}
       <input
-        id="date"
         type="date"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={formatted}
+        onChange={(e) => {
+          setValue(new Date(e.target.value).getTime());
+        }}
+        max={max}
       />
-    </div>
+    </label>
   );
 }

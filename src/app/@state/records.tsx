@@ -1,4 +1,4 @@
-import axios from "axios";
+import { convertCurrency } from "app/@functions/convertCurrency";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -9,7 +9,7 @@ interface Record {
   currency: string;
   category: string;
   description: string;
-  date: string;
+  date: number;
 }
 
 interface StoreState {
@@ -18,37 +18,16 @@ interface StoreState {
   currency: string;
   category: string;
   description: string;
-  date: string;
+  date: number;
   records: Record[];
 
   setAmount: (value: string) => void;
   setCurrency: (value: string) => void;
   setCategory: (value: string) => void;
   setDescription: (value: string) => void;
-  setDate: (value: string) => void;
+  setDate: (value: number) => void;
   addRecord: () => Promise<void>;
   deleteRecord: (id: number) => void;
-}
-
-function formatDate(date: string) {
-  const [year, month, day] = date.split("-");
-  return `${day}.${month}.${year}`;
-}
-
-function getToday() {
-  return new Date().toISOString().split("T")[0];
-}
-
-async function convertCurrency(currency: string, amount: string) {
-  try {
-    const res = await axios.get(
-      `https://v6.exchangerate-api.com/v6/abb89f23a483485679372e28/latest/${currency}`
-    );
-    return (res.data.conversion_rates.USD * Number(amount)).toFixed(2);
-  } catch {
-    alert("Convert failed");
-    return "0";
-  }
 }
 
 export const recordsStore = create<StoreState>()(
@@ -59,14 +38,14 @@ export const recordsStore = create<StoreState>()(
       currency: "",
       category: "",
       description: "",
-      date: getToday(),
+      date: Date.now(),
       records: [],
 
       setAmount: (value) => set({ amount: value }),
       setCurrency: (value) => set({ currency: value }),
       setCategory: (value) => set({ category: value }),
       setDescription: (value) => set({ description: value }),
-      setDate: (value) => set({ date: value }),
+      setDate: (value) => set({ date: new Date(value).getTime() }),
 
       addRecord: async () => {
         const state = recordsStore.getState();
@@ -74,7 +53,7 @@ export const recordsStore = create<StoreState>()(
         const convertedAmount =
           state.currency === "USD"
             ? state.amount
-            : await convertCurrency(state.currency, state.amount);
+            : await convertCurrency(state.currency, state.amount, state.date);
 
         const newRecord: Record = {
           id: Date.now(),
@@ -83,7 +62,7 @@ export const recordsStore = create<StoreState>()(
           currency: state.currency,
           category: state.category,
           description: state.description,
-          date: formatDate(state.date),
+          date: state.date,
         };
 
         set({
@@ -93,7 +72,7 @@ export const recordsStore = create<StoreState>()(
           currency: "",
           category: "",
           description: "",
-          date: getToday(),
+          date: Date.now(),
         });
       },
 

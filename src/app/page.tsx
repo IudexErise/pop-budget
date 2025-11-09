@@ -36,7 +36,12 @@ export default function Home() {
           setValue={setAmount}
           type="number"
         />
-        <Calendar label="purchase date" value={date} setValue={setDate} />
+        <Calendar
+          label="purchase date"
+          value={date}
+          setValue={setDate}
+          max={new Date().toISOString().split("T")[0]}
+        />
         <Select
           label="currency"
           options={["", "USD", "RUB", "GEL"]}
@@ -65,7 +70,7 @@ export default function Home() {
               <span>USD amount :{record.convertedAmount}/</span>
               <span>Currency :{record.currency}/</span>
               <span>Category :{record.category}/</span>
-              <span>Date :{record.date}/</span>
+              <span>Date :{new Date(record.date).toLocaleDateString()}/</span>
               <span>Description :{record.description}/</span>
               <button onClick={() => deleteRecord(record.id)}>
                 Delete record
