@@ -1,12 +1,12 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import Calendar from "../@components/calendar/calendar";
-import Input from "../@components/input/input";
-import Select from "../@components/select/select";
-import { recordsStore } from "../@state/records";
+import Calendar from "../../@components/calendar/calendar";
+import Input from "../../@components/input/input";
+import Select from "../../@components/select/select";
+import { recordsStore } from "../../@state/records";
 import { useEffect } from "react";
-import { editRecordStore } from "app/@state/editRecord";
+import { editRecordStore } from "../../@state/editRecord";
 
 export default function Edit() {
   const searchParams = useSearchParams();

@@ -1,4 +1,4 @@
-import { convertCurrency } from "app/@functions/convertCurrency";
+import { convertCurrency } from "@functions/convertCurrency";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

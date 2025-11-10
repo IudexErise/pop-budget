@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { recordsStore } from "./records";
-import { convertCurrency } from "app/@functions/convertCurrency";
+import { convertCurrency } from "@functions/convertCurrency";
 
 interface StoreState {
   recordId: number;
