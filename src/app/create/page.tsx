@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Calendar from "../../@components/calendar/calendar";
 import Input from "../../@components/input/input";
 import Select from "../../@components/select/select";
@@ -15,16 +14,12 @@ export default function Create() {
     setDescription,
     date,
     setDate,
-    records,
     addRecord,
     currency,
     setCurrency,
     category,
     setCategory,
-    deleteRecord,
   } = recordsStore();
-
-  const router = useRouter();
 
   return (
     <main>
@@ -61,26 +56,6 @@ export default function Create() {
           type="text"
         />
         <button onClick={addRecord}>Save</button>
-      </div>
-      <div>
-        {records.map((record) => {
-          return (
-            <div key={record.id}>
-              <span>Amount :{record.amount}/</span>
-              <span>USD amount :{record.convertedAmount}/</span>
-              <span>Currency :{record.currency}/</span>
-              <span>Category :{record.category}/</span>
-              <span>Date :{new Date(record.date).toLocaleDateString()}/</span>
-              <span>Description :{record.description}/</span>
-              <button onClick={() => deleteRecord(record.id)}>
-                Delete record
-              </button>
-              <button onClick={() => router.push(`/edit?id=${record.id}`)}>
-                Edit record
-              </button>
-            </div>
-          );
-        })}
       </div>
     </main>
   );
