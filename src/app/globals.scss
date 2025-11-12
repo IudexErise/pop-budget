@@ -1,3 +1,10 @@
+@use "../@styles/variables" as *;
+
+body {
+  background-color: $color-black;
+  color: $color-white;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -6,4 +13,9 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+button {
+  border: none;
+  padding: 0;
 }

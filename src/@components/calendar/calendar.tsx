@@ -3,7 +3,7 @@
 /* import styles from "./calendar.module.scss"; */
 
 interface CalendarProps {
-  label: string;
+  label?: string;
   value: number;
   setValue: (v: number) => void;
   max?: string;
