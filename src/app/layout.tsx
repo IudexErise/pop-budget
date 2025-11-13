@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap", // ускоряет загрузку
-  variable: "--font-inter", // создаёт CSS-переменную
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export default function RootLayout({

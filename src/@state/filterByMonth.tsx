@@ -1,23 +1,23 @@
 import { create } from "zustand";
 
 interface StoreState {
-  date: number;
+  filterDate: number;
   minusMonth: () => void;
   plusMonth: () => void;
 }
 
-export const filterByMonth = create<StoreState>()((set, get) => ({
-  date: Date.now(),
+export const filterByMonthStore = create<StoreState>()((set, get) => ({
+  filterDate: Date.now(),
 
   minusMonth: () => {
-    const currentDate = new Date(get().date);
+    const currentDate = new Date(get().filterDate);
     currentDate.setMonth(currentDate.getMonth() - 1);
-    set({ date: currentDate.getTime() });
+    set({ filterDate: currentDate.getTime() });
   },
 
   plusMonth: () => {
-    const currentDate = new Date(get().date);
+    const currentDate = new Date(get().filterDate);
     currentDate.setMonth(currentDate.getMonth() + 1);
-    set({ date: currentDate.getTime() });
+    set({ filterDate: currentDate.getTime() });
   },
 }));

@@ -3,11 +3,12 @@
 import FilterMonthSwitcher from "@components/filterMonthSwitcher/filterMonthSwitcher";
 import { recordsStore } from "../@state/records";
 import { useRouter } from "next/navigation";
+import LastRecords from "@components/lastRecords/lastRecords";
 /* import styles from "./page.module.scss"; */
 
 export default function Home() {
   const router = useRouter();
-  const { records, deleteRecord } = recordsStore();
+  const { records } = recordsStore();
   const totalMoney = records.reduce(
     (sum, record) => sum + +record.convertedAmount,
     0
@@ -36,26 +37,7 @@ export default function Home() {
       <div>
         <h2>All records</h2>
         <button onClick={() => router.push("/create")}>New</button>
-        <div>
-          {records.map((record) => {
-            return (
-              <div key={record.id}>
-                <span>Amount :{record.amount}/</span>
-                <span>USD amount :{record.convertedAmount}/</span>
-                <span>Currency :{record.currency}/</span>
-                <span>Category :{record.category}/</span>
-                <span>Date :{new Date(record.date).toLocaleDateString()}/</span>
-                <span>Description :{record.description}/</span>
-                <button onClick={() => deleteRecord(record.id)}>
-                  Delete record
-                </button>
-                <button onClick={() => router.push(`/edit?id=${record.id}`)}>
-                  Edit record
-                </button>
-              </div>
-            );
-          })}
-        </div>
+        <LastRecords />
       </div>
     </main>
   );

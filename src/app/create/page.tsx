@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Calendar from "../../@components/calendar/calendar";
 import Input from "../../@components/input/input";
 import Select from "../../@components/select/select";
@@ -20,6 +21,13 @@ export default function Create() {
     category,
     setCategory,
   } = recordsStore();
+
+  const router = useRouter();
+
+  function handleSave() {
+    addRecord();
+    router.push("/");
+  }
 
   return (
     <main>
@@ -55,7 +63,7 @@ export default function Create() {
           setValue={setDescription}
           type="text"
         />
-        <button onClick={addRecord}>Save</button>
+        <button onClick={() => handleSave()}>Save</button>
       </div>
     </main>
   );
