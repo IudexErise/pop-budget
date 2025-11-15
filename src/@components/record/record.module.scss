@@ -1,0 +1,30 @@
+@use "../../@styles/variables" as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.textBlock {
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.numbersBlock {
+  text-align: right;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.subText {
+  font-size: 12px;
+  color: rgb(255, 255, 255, 0.5);
+}
+
+.amount {
+  font-size: 14px;
+  color: rgb(219, 60, 60);
+}

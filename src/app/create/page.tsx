@@ -47,13 +47,13 @@ export default function Create() {
         />
         <Select
           label="currency"
-          options={["", "USD", "RUB", "GEL"]}
+          options={["USD", "RUB", "GEL"]}
           value={currency}
           setValue={setCurrency}
         />
         <Select
           label="category"
-          options={["", "food", "drink", "delivery"]}
+          options={["No category", "food", "drink", "delivery"]}
           value={category}
           setValue={setCategory}
         />

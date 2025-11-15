@@ -2,7 +2,7 @@ import { convertCurrency } from "@functions/convertCurrency";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface Record {
+export interface RecordProps {
   id: number;
   amount: string;
   convertedAmount: string;
@@ -19,7 +19,7 @@ interface StoreState {
   category: string;
   description: string;
   date: number;
-  records: Record[];
+  records: RecordProps[];
 
   setAmount: (value: string) => void;
   setCurrency: (value: string) => void;
@@ -35,8 +35,8 @@ export const recordsStore = create<StoreState>()(
     (set) => ({
       amount: "",
       convertedAmount: "",
-      currency: "",
-      category: "",
+      currency: "USD",
+      category: "No category",
       description: "",
       date: Date.now(),
       records: [],
@@ -55,7 +55,7 @@ export const recordsStore = create<StoreState>()(
             ? state.amount
             : await convertCurrency(state.currency, state.amount, state.date);
 
-        const newRecord: Record = {
+        const newRecord: RecordProps = {
           id: Date.now(),
           amount: state.amount,
           convertedAmount: convertedAmount.toString(),
@@ -69,8 +69,8 @@ export const recordsStore = create<StoreState>()(
           records: [...state.records, newRecord],
           amount: "",
           convertedAmount: "",
-          currency: "",
-          category: "",
+          currency: "USD",
+          category: "No category",
           description: "",
           date: Date.now(),
         });

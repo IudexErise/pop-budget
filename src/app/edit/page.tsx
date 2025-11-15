@@ -92,7 +92,7 @@ export default function Edit() {
         />
         <Select
           label="Category"
-          options={["", "food", "drink", "delivery"]}
+          options={["No category", "food", "drink", "delivery"]}
           value={category}
           setValue={setCategory}
         />
