@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import { Inter } from "next/font/google";
+import Header from "@components/header/header";
+import Footer from "@components/footer/footer";
 
 export const metadata: Metadata = {
   title: "My Budget App",
@@ -20,7 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

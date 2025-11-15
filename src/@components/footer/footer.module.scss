@@ -1,0 +1,46 @@
+@use "../../@styles/variables" as *;
+
+%item {
+  width: 74.6px;
+  height: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    margin-top: 14px;
+  }
+}
+
+.footer {
+  height: 83px;
+  background-color: $color-grey;
+  display: flex;
+}
+
+.item {
+  @extend %item;
+}
+
+.itemActive {
+  @extend %item;
+  svg path {
+    fill: $color-hover;
+  }
+
+  .text {
+    color: $color-hover;
+  }
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+}
+
+.create {
+  width: 74.6px;
+  height: 68px;
+  background-color: transparent;
+}
