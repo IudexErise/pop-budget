@@ -1,14 +1,14 @@
 "use client";
 
-import FilterMonthSwitcher from "@components/filterMonthSwitcher/filterMonthSwitcher";
+import FilterMonthSwitcher from "@components/filterByTimeSwitcher/filterByTimeSwitcher";
 import { recordsStore } from "../@state/records";
 import LastRecords from "@components/lastRecords/lastRecords";
 import styles from "./page.module.scss";
-import { filterByMonthStore } from "@state/filterByMonth";
+import { filterByTimeStore } from "@state/filterByTime";
 
 export default function Home() {
   const { records } = recordsStore();
-  const { filterDate } = filterByMonthStore();
+  const { filterDate } = filterByTimeStore();
 
   const filteredRecords = records.filter(
     (record) =>

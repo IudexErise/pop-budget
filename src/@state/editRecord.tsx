@@ -50,7 +50,8 @@ export const editRecordStore = create<StoreState>()((set) => ({
 
     if (
       recordToEdit.amount !== state.amount ||
-      recordToEdit.date !== state.date
+      recordToEdit.date !== state.date ||
+      recordToEdit.convertedAmount === "0"
     ) {
       converted = await convertCurrency(
         state.currency,

@@ -37,7 +37,7 @@ export default function Record({
       </svg>
       <div className={styles.textBlock}>
         <div className={styles.text}>{category}</div>
-        <div className={styles.subText}>{description}</div>
+        <div className={styles.subText}>{description ? description : "-"}</div>
       </div>
       <div className={styles.numbersBlock}>
         <div>

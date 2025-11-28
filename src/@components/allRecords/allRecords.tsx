@@ -1,31 +1,28 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import styles from "./allRecords.module.scss";
 import { recordsStore } from "@state/records";
+import Record from "@components/record/record";
 
 export default function AllRecords() {
-  const router = useRouter();
-  const { records, deleteRecord } = recordsStore();
+  const { records } = recordsStore();
+
+  const filteredRecords = records.sort((a, b) => b.date - a.date);
 
   return (
     <div className={styles.container}>
-      {records.map((record) => {
+      {filteredRecords.map((record) => {
         return (
-          <div key={record.id}>
-            <span>Amount :{record.amount}/</span>
-            <span>USD amount :{record.convertedAmount}/</span>
-            <span>Currency :{record.currency}/</span>
-            <span>Category :{record.category}/</span>
-            <span>Date :{new Date(record.date).toLocaleDateString()}/</span>
-            <span>Description :{record.description}/</span>
-            <button onClick={() => deleteRecord(record.id)}>
-              Delete record
-            </button>
-            <button onClick={() => router.push(`/edit?id=${record.id}`)}>
-              Edit record
-            </button>
-          </div>
+          <Record
+            key={record.id}
+            id={record.id}
+            amount={record.amount}
+            convertedAmount={record.convertedAmount}
+            currency={record.currency}
+            category={record.category}
+            description={record.description}
+            date={record.date}
+          />
         );
       })}
     </div>

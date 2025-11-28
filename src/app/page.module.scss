@@ -1,11 +1,10 @@
 @use "../@styles/variables" as *;
 
 .main {
-  margin: 15px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 400px;
+  margin-bottom: 15px;
 }
 
 .total {

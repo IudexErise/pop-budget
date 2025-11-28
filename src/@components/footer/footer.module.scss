@@ -11,12 +11,17 @@
   svg {
     margin-top: 14px;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .footer {
   height: 83px;
   background-color: $color-grey;
   display: flex;
+  justify-content: center;
 }
 
 .item {

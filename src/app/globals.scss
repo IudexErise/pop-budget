@@ -3,6 +3,8 @@
 body {
   background-color: $color-black;
   color: $color-white;
+  max-width: 400px;
+  margin: 15px;
 }
 
 input::-webkit-outer-spin-button,

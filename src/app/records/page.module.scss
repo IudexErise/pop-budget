@@ -1,0 +1,28 @@
+@use "../../@styles/variables" as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 38px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: $color-hover;
+    justify-content: center;
+    align-items: center;
+  }
+}

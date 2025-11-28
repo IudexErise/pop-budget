@@ -1,10 +1,10 @@
 "use client";
 
-import { filterByMonthStore } from "@state/filterByMonth";
-import styles from "./filterMonthSwitcher.module.scss";
+import { filterByTimeStore } from "@state/filterByTime";
+import styles from "./filterByTimeSwitcher.module.scss";
 
-export default function FilterMonthSwitcher() {
-  const { filterDate, minusMonth, plusMonth } = filterByMonthStore();
+export default function FilterByTimeSwitcher() {
+  const { filterDate, minusMonth, plusMonth } = filterByTimeStore();
 
   const formatted = new Date(filterDate).toLocaleDateString("en-EN", {
     year: "numeric",
