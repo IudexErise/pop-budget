@@ -68,7 +68,7 @@ export default function Edit() {
   }
 
   return (
-    <main>
+    <div>
       <h1>Edit</h1>
       <div>
         <Input
@@ -104,6 +104,6 @@ export default function Edit() {
         />
         <button onClick={() => handleSave()}>Save</button>
       </div>
-    </main>
+    </div>
   );
 }

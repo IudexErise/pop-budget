@@ -83,6 +83,9 @@ export const recordsStore = create<StoreState>()(
     }),
     {
       name: "MyRecords",
+      partialize: (state) => ({
+        records: state.records,
+      }),
     }
   )
 );

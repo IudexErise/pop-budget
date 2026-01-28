@@ -14,7 +14,7 @@ export default function Home() {
     (record) =>
       new Date(record.date).getFullYear() ===
         new Date(filterDate).getFullYear() &&
-      new Date(record.date).getMonth() === new Date(filterDate).getMonth()
+      new Date(record.date).getMonth() === new Date(filterDate).getMonth(),
   );
   const totalMoney = filteredRecords
     .reduce((sum, record) => sum + +record.convertedAmount, 0)
@@ -28,7 +28,7 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
+    <div className={styles.container}>
       <FilterMonthSwitcher />
       <div className={styles.total}>
         <div className={styles.subText}>Total in USD</div>
@@ -50,6 +50,6 @@ export default function Home() {
         <div className={styles.lastRecords}>Last Records</div>
         <LastRecords />
       </div>
-    </main>
+    </div>
   );
 }

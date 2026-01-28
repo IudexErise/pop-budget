@@ -29,8 +29,10 @@ export default function Create() {
     router.push("/");
   }
 
+  console.log(date);
+
   return (
-    <main>
+    <div>
       <h1>Create</h1>
       <div>
         <Input
@@ -65,6 +67,6 @@ export default function Create() {
         />
         <button onClick={() => handleSave()}>Save</button>
       </div>
-    </main>
+    </div>
   );
 }

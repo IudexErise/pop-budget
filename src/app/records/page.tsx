@@ -3,13 +3,12 @@
 import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
 import AllRecords from "@components/allRecords/allRecords";
-import FilterByTimeSwitcher from "@components/filterByTimeSwitcher/filterByTimeSwitcher";
 
-export default function Home() {
+export default function Records() {
   const router = useRouter();
+
   return (
-    <main className={styles.main}>
-      <FilterByTimeSwitcher />
+    <div className={styles.container}>
       <div className={styles.headline}>
         <h1>Records</h1>
         <button onClick={() => router.push(`/create`)}>
@@ -32,6 +31,6 @@ export default function Home() {
       <div>
         <AllRecords />
       </div>
-    </main>
+    </div>
   );
 }
