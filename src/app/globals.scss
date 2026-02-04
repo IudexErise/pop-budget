@@ -37,4 +37,8 @@ input[type="number"] {
 button {
   border: none;
   padding: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

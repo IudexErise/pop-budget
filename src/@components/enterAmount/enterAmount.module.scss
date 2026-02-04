@@ -1,0 +1,47 @@
+@use "../../@styles/variables" as *;
+@use "../../@styles/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subText {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.amount {
+  font-weight: 600;
+  font-size: 46px;
+  color: $color-red;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid $color-grey;
+  margin: 25px 0;
+}
+
+.button {
+  width: 120px;
+  height: 80px;
+  font-weight: 600;
+  font-size: 24px;
+  background-color: transparent;
+  color: white;
+
+  &:hover {
+    color: $color-red;
+
+    path {
+      fill: $color-red;
+    }
+  }
+}
+
+.save {
+  @include buttonSave;
+}
