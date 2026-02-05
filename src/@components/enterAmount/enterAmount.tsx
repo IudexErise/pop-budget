@@ -4,10 +4,10 @@ import { recordsStore } from "@state/records";
 import styles from "./enterAmount.module.scss";
 
 interface EnterAmountProps {
-  setShow: (value: boolean) => void;
+  handleSave: () => void;
 }
 
-export default function EnterAmount({ setShow }: EnterAmountProps) {
+export default function EnterAmount({ handleSave }: EnterAmountProps) {
   const { amount, setAmount } = recordsStore();
 
   function handleButtonClick(value: number | "." | "del") {
@@ -28,8 +28,8 @@ export default function EnterAmount({ setShow }: EnterAmountProps) {
 
   return (
     <div className={styles.container}>
-      {/*       <p className={styles.subText}>Amount</p>
-      <div className={styles.amount}>{amount}</div> */}
+      <p className={styles.subText}>Amount</p>
+      <div className={styles.amount}>{amount === "" ? 0 : amount}</div>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={() => handleButtonClick(1)}>
           1
@@ -87,7 +87,7 @@ export default function EnterAmount({ setShow }: EnterAmountProps) {
           </svg>
         </button>
       </div>
-      <button className={styles.save} onClick={() => setShow(false)}>
+      <button className={styles.save} onClick={handleSave}>
         Save
       </button>
     </div>

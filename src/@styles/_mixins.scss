@@ -1,11 +1,11 @@
-@use "./variables" as *;
+@use "./variables" as v;
 
 @mixin buttonSave {
   width: 100%;
   max-width: 363px;
   height: 48px;
   border-radius: 10px;
-  background-color: $color-hover;
+  background-color: v.$color-hover;
   color: white;
   font-size: 14px;
   font-weight: 600;
@@ -15,6 +15,16 @@
 
   &:hover {
     background-color: white;
-    color: $color-hover;
+    color: v.$color-hover;
   }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 360px;
+}
+
+@mixin containerBorders {
+  border-radius: 12px;
+  background-color: v.$color-grey;
 }

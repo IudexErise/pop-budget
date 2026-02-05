@@ -1,0 +1,31 @@
+@use "../../../@styles/variables" as v;
+@use "../../../@styles/mixins" as m;
+
+.container {
+  @include m.container;
+}
+
+.currencyCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.currencyIcon {
+  width: 44px;
+  height: 44px;
+  @include m.containerBorders;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.currencyName {
+  font-size: 16px;
+}

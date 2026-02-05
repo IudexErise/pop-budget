@@ -1,14 +1,15 @@
-@use "../@styles/variables" as *;
+@use "../@styles/variables" as v;
+@use "../@styles/mixins" as m;
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
+  @include m.container;
 }
 
 .total {
-  @include container;
+  @include m.containerBorders;
   padding: 20px;
 }
 

@@ -4,8 +4,3 @@ $color-grey: rgba(30, 32, 36, 1);
 $color-hover: rgba(106, 102, 255, 1);
 $color-red: rgba(219, 60, 60, 1);
 $color-green: rgba(102, 255, 163, 1);
-
-@mixin container {
-  border-radius: 12px;
-  background-color: $color-grey;
-}

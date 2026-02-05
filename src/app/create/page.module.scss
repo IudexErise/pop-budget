@@ -1,4 +1,9 @@
-@use "../../@styles/variables" as *;
+@use "../../@styles/variables" as v;
+@use "../../@styles/mixins" as m;
+
+.container {
+  @include m.container;
+}
 
 .topBlock {
   display: flex;
@@ -40,10 +45,18 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+.text {
+  font-size: 16px;
+
+  &__uppercase {
+    text-transform: uppercase;
+  }
+}
+
 .amount {
   font-weight: 600;
   font-size: 46px;
-  color: $color-red;
+  color: v.$color-red;
 }
 
 .section {
@@ -51,7 +64,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $color-grey;
+  border-bottom: 1px solid v.$color-grey;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .sectionText {
