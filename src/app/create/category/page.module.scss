@@ -4,3 +4,19 @@
 .container {
   @include m.container;
 }
+
+.categoryCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.categoryName {
+  font-size: 16px;
+}

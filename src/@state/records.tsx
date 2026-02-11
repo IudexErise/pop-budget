@@ -8,6 +8,7 @@ export interface RecordProps {
   convertedAmount: string;
   currency: string;
   category: string;
+  subCategory: string;
   description: string;
   date: number;
 }
@@ -17,6 +18,7 @@ interface StoreState {
   convertedAmount: string;
   currency: string;
   category: string;
+  subCategory: string;
   description: string;
   date: number;
   records: RecordProps[];
@@ -24,6 +26,7 @@ interface StoreState {
   setAmount: (value: string) => void;
   setCurrency: (value: string) => void;
   setCategory: (value: string) => void;
+  setSubCategory: (value: string) => void;
   setDescription: (value: string) => void;
   setDate: (value: number) => void;
   addRecord: () => Promise<void>;
@@ -36,14 +39,16 @@ export const recordsStore = create<StoreState>()(
       amount: "",
       convertedAmount: "",
       currency: "USD",
-      category: "No category",
-      description: "",
+      category: "Other",
+      subCategory: "Other",
+      description: "Unexpected",
       date: Date.now(),
       records: [],
 
       setAmount: (value) => set({ amount: value }),
       setCurrency: (value) => set({ currency: value }),
       setCategory: (value) => set({ category: value }),
+      setSubCategory: (value) => set({ subCategory: value }),
       setDescription: (value) => set({ description: value }),
       setDate: (value) => set({ date: new Date(value).getTime() }),
 
@@ -61,6 +66,7 @@ export const recordsStore = create<StoreState>()(
           convertedAmount: convertedAmount.toString(),
           currency: state.currency,
           category: state.category,
+          subCategory: state.subCategory,
           description: state.description,
           date: state.date,
         };
@@ -70,7 +76,8 @@ export const recordsStore = create<StoreState>()(
           amount: "",
           convertedAmount: "",
           currency: "USD",
-          category: "No category",
+          category: "Other",
+          subCategory: "Other",
           description: "",
           date: Date.now(),
         });
