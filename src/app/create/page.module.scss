@@ -69,10 +69,49 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:nth-of-type(3) {
+    &:hover {
+      cursor: unset;
+    }
+  }
 }
 
 .sectionText {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.subCategories {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  @include m.container;
+}
+
+%subCategory {
+  border-radius: 35px;
+  padding: 10px;
+  font-size: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.subCategory {
+  @extend %subCategory;
+  border: 1px solid color-mix(in srgb, var(--color) 10%, transparent);
+}
+
+.subCategoryActive {
+  @extend %subCategory;
+  background-color: color-mix(in srgb, var(--color) 50%, transparent);
+  border: 1px solid var(--color);
 }

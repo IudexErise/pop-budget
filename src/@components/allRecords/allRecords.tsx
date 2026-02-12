@@ -55,6 +55,7 @@ export default function AllRecords() {
               convertedAmount={record.convertedAmount}
               currency={record.currency}
               category={record.category}
+              subCategory={record.subCategory}
               description={record.description}
               date={record.date}
             />

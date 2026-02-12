@@ -20,12 +20,18 @@ export default function CategoryPage() {
   );
 }
 
-export function CategoryCard({ name, color, icon: Icon }: Category) {
-  const { setCategory } = recordsStore();
+export function CategoryCard({
+  name,
+  color,
+  subCategories,
+  icon: Icon,
+}: Category) {
+  const { setCategory, setSubCategory } = recordsStore();
   const router = useRouter();
 
   function handleClick() {
     setCategory(name);
+    setSubCategory(subCategories[0]);
     router.back();
   }
 

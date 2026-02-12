@@ -72,3 +72,7 @@ export const categories: Category[] = [
     subCategories: ["Unexpected", "Planned"],
   },
 ];
+
+export function getSelectedCategory(categoryName: string | null) {
+  return categories.find((c) => c.name === categoryName) ?? null;
+}

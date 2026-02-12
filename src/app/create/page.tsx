@@ -3,23 +3,24 @@
 import { useRouter } from "next/navigation";
 import Calendar from "../../@components/calendar/calendar";
 import Input from "../../@components/input/input";
-import Select from "../../@components/select/select";
 import styles from "./page.module.scss";
 import { recordsStore } from "../../@state/records";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
-import { categories } from "@const/categories";
+import { getSelectedCategory } from "@const/categories";
+import { CSSProperties } from "react";
 
 export default function Create() {
   const {
     amount,
     description,
+    subCategory,
     setDescription,
     date,
     setDate,
     addRecord,
     category,
-    setCategory,
     currency,
+    setSubCategory,
   } = recordsStore();
 
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function Create() {
     router.push("/");
   }
 
-  const selectedCategory = categories.find((c) => c.name === category);
+  const selectedCategory = getSelectedCategory(category);
 
   return (
     <div className={styles.container}>
@@ -82,18 +83,43 @@ export default function Create() {
         )}
       </section>
 
+      <section className={styles.section}>
+        <div className={styles.sectionText}>
+          <p className={styles.subText}>Subcategory</p>
+          <div className={styles.subCategories}>
+            {selectedCategory &&
+              selectedCategory.subCategories.map((subCat) => (
+                <div
+                  key={subCat}
+                  className={
+                    subCat === subCategory
+                      ? styles.subCategoryActive
+                      : styles.subCategory
+                  }
+                  onClick={() => setSubCategory(subCat)}
+                  style={
+                    {
+                      "--color": `${selectedCategory.color}`,
+                    } as CSSProperties
+                  }
+                >
+                  <selectedCategory.icon
+                    color={selectedCategory.color}
+                    size={24}
+                  />
+                  <span>{subCat}</span>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+
       <div>
         <Calendar
           label="purchase date"
           value={date}
           setValue={setDate}
           max={new Date().toISOString().split("T")[0]}
-        />
-        <Select
-          label="category"
-          options={["No category", "food", "drink", "delivery"]}
-          value={category}
-          setValue={setCategory}
         />
         <Input
           placeholder="comment"

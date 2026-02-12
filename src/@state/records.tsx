@@ -40,8 +40,8 @@ export const recordsStore = create<StoreState>()(
       convertedAmount: "",
       currency: "USD",
       category: "Other",
-      subCategory: "Other",
-      description: "Unexpected",
+      subCategory: "Unexpected",
+      description: "",
       date: Date.now(),
       records: [],
 
@@ -77,7 +77,7 @@ export const recordsStore = create<StoreState>()(
           convertedAmount: "",
           currency: "USD",
           category: "Other",
-          subCategory: "Other",
+          subCategory: "Unexpected",
           description: "",
           date: Date.now(),
         });

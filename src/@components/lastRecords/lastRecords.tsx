@@ -14,7 +14,7 @@ export default function LastRecords() {
       (record) =>
         new Date(record.date).getFullYear() ===
           new Date(filterDate).getFullYear() &&
-        new Date(record.date).getMonth() === new Date(filterDate).getMonth()
+        new Date(record.date).getMonth() === new Date(filterDate).getMonth(),
     )
     .sort((a, b) => b.date - a.date);
 
@@ -29,6 +29,7 @@ export default function LastRecords() {
             convertedAmount={record.convertedAmount}
             currency={record.currency}
             category={record.category}
+            subCategory={record.subCategory}
             description={record.description}
             date={record.date}
           />
