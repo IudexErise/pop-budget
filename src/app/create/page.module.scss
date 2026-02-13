@@ -119,3 +119,29 @@
   left: 0%;
   opacity: 0;
 }
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.description {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.save {
+  margin-top: 40px;
+  @include m.buttonSave;
+}

@@ -1,7 +1,9 @@
-const DAY_FORMATTER = new Intl.DateTimeFormat("en-US", {
+const DAY_FORMATTER = new Intl.DateTimeFormat("en-GB", {
   day: "2-digit",
-  month: "long",
+  month: "short",
   year: "numeric",
+  hour: "numeric",
+  minute: "numeric",
 });
 
 export const formatDay = (timestamp: number) =>

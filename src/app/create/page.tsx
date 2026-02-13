@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Input from "../../@components/input/input";
 import styles from "./page.module.scss";
 import { recordsStore } from "../../@state/records";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
@@ -167,23 +166,31 @@ export default function Create() {
         </button>
         <input
           ref={inputRef}
-          type="date"
+          type="datetime-local"
           className={styles.hiddenCalendar}
-          max={new Date().toISOString().split("T")[0]}
           onChange={(e) => {
             setDate(new Date(e.target.value).getTime());
           }}
         />
       </section>
 
+      <section className={styles.section}>
+        <div className={styles.descriptionBlock}>
+          <p className={styles.subText}>Description</p>
+          <input
+            id="description"
+            className={styles.description}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Click to enter description"
+          />
+        </div>
+      </section>
+
       <div>
-        <Input
-          placeholder="comment"
-          value={description}
-          setValue={setDescription}
-          type="text"
-        />
-        <button onClick={() => handleSave()}>Save</button>
+        <button onClick={() => handleSave()} className={styles.save}>
+          Save
+        </button>
       </div>
     </div>
   );
