@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./record.module.scss";
-import { RecordProps } from "@state/records";
+import { RecordProps, recordsStore } from "@state/records";
 import { getSelectedCategory } from "@const/categories";
 
 export default function Record({
@@ -18,11 +18,15 @@ export default function Record({
 
   const selectedCategory = getSelectedCategory(category);
 
+  const { startEdit } = recordsStore();
+
+  function handleClick() {
+    startEdit(id);
+    router.push("/record");
+  }
+
   return (
-    <div
-      className={styles.container}
-      onClick={() => router.push(`/edit?id=${id}`)}
-    >
+    <div className={styles.container} onClick={() => handleClick()}>
       {selectedCategory && (
         <selectedCategory.icon color={selectedCategory.color} size={44} />
       )}

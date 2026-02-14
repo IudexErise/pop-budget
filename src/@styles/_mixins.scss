@@ -1,21 +1,36 @@
 @use "./variables" as v;
 
-@mixin buttonSave {
+%buttonAction {
   width: 100%;
   max-width: 363px;
   height: 48px;
   border-radius: 10px;
-  background-color: v.$color-hover;
-  color: white;
   font-size: 14px;
   font-weight: 600;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+@mixin buttonSave {
+  @extend %buttonAction;
+  background-color: v.$color-hover;
+  color: white;
 
   &:hover {
     background-color: white;
     color: v.$color-hover;
+  }
+}
+
+@mixin buttonDelete {
+  @extend %buttonAction;
+  background-color: v.$color-red;
+  color: white;
+
+  &:hover {
+    background-color: white;
+    color: v.$color-red;
   }
 }
 

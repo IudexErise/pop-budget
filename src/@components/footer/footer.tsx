@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./footer.module.scss";
+import { recordsStore } from "@state/records";
 
 interface ButtonProps {
   icon: React.ReactNode;
@@ -25,7 +26,13 @@ function FooterButton({ icon, text, path }: ButtonProps) {
 }
 
 export default function Footer() {
+  const { cancelEdit } = recordsStore();
   const router = useRouter();
+  const createRecord = () => {
+    cancelEdit();
+    router.push(`/record`);
+  };
+
   return (
     <footer className={styles.footer}>
       <FooterButton
@@ -70,7 +77,7 @@ export default function Footer() {
         text="Records"
         path="/records"
       />
-      <button className={styles.create} onClick={() => router.push(`/create`)}>
+      <button className={styles.create} onClick={() => createRecord()}>
         <svg
           width="51"
           height="51"

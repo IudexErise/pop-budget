@@ -11,7 +11,7 @@ export default function Records() {
     <div className={styles.container}>
       <div className={styles.headline}>
         <h1>Records</h1>
-        <button onClick={() => router.push(`/create`)}>
+        <button onClick={() => router.push(`/record`)}>
           <svg
             width="21"
             height="21"

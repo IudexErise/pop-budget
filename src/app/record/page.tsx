@@ -5,10 +5,10 @@ import styles from "./page.module.scss";
 import { recordsStore } from "../../@state/records";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
 import { getSelectedCategory } from "@const/categories";
-import { CSSProperties, useRef } from "react";
+import { CSSProperties, useEffect, useRef } from "react";
 import { formatDay } from "@utils/date";
 
-export default function Create() {
+export default function RecordPage() {
   const {
     amount,
     description,
@@ -16,18 +16,23 @@ export default function Create() {
     setDescription,
     date,
     setDate,
-    addRecord,
+    saveRecord,
     category,
     currency,
     setSubCategory,
+    mode,
+    editedRecordId,
+    cancelEdit,
+    deleteRecord,
   } = recordsStore();
 
   const router = useRouter();
 
-  function handleSave() {
-    addRecord();
-    router.push("/");
-  }
+  useEffect(() => {
+    if (mode === "edit" && !editedRecordId) {
+      router.replace("/");
+    }
+  }, [mode, editedRecordId, router]);
 
   const selectedCategory = getSelectedCategory(category);
 
@@ -40,28 +45,47 @@ export default function Create() {
     input.showPicker();
   };
 
+  const onSave = async () => {
+    await saveRecord();
+    router.replace("/");
+  };
+
+  const onCancel = () => {
+    cancelEdit();
+    router.back();
+  };
+
+  const onDelete = () => {
+    if (!editedRecordId) return;
+
+    deleteRecord(editedRecordId);
+    cancelEdit();
+    router.replace("/records");
+  };
+
   return (
     <div className={styles.container}>
-      <HeadlineBlock headline="Create" onClick={() => router.back()} />
-      <div
+      {mode === "create" ? (
+        <HeadlineBlock headline="Create" onClick={() => router.replace("/")} />
+      ) : (
+        <HeadlineBlock headline="Edit" onClick={() => onCancel()} />
+      )}
+      <section
         className={styles.amountBlock}
-        onClick={() => router.push("create/amount")}
+        onClick={() => router.push("record/amount")}
       >
         <span className={styles.subText}>Expense</span>
         <div className={styles.amount}>{amount === "" ? 0 : amount}</div>
-      </div>
+      </section>
 
-      <section
-        className={styles.section}
-        onClick={() => router.push("create/currency")}
-      >
+      <section className={styles.section}>
         <div className={styles.sectionText}>
           <p className={styles.subText}>Currency</p>
           <p className={styles.text__uppercase}>{currency}</p>
         </div>
         <button
           className={styles.button}
-          onClick={() => router.push("create/amount")}
+          onClick={() => router.push("record/currency")}
         >
           <svg
             width="44"
@@ -97,7 +121,7 @@ export default function Create() {
         {selectedCategory && (
           <button
             className={styles.button}
-            onClick={() => router.push("create/category")}
+            onClick={() => router.push("record/category")}
           >
             <selectedCategory.icon color={selectedCategory.color} size={44} />
           </button>
@@ -187,11 +211,16 @@ export default function Create() {
         </div>
       </section>
 
-      <div>
-        <button onClick={() => handleSave()} className={styles.save}>
-          Save
+      <section className={styles.buttonsBlock}>
+        <button onClick={() => onSave()} className={styles.save}>
+          {mode === "create" ? "Save" : "Update"}
         </button>
-      </div>
+        {mode === "edit" && (
+          <button onClick={() => onDelete()} className={styles.delete}>
+            Delete
+          </button>
+        )}
+      </section>
     </div>
   );
 }

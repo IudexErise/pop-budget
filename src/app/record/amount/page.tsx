@@ -28,7 +28,7 @@ export default function Amount() {
           </svg>
         </button>
       </div>
-      <EnterAmount handleSave={() => router.push("/create")} />
+      <EnterAmount handleSave={() => router.push("/record")} />
     </div>
   );
 }
