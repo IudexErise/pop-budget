@@ -4,14 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
 import { recordsStore } from "@state/records";
-
-type Currency = "USD" | "GEL" | "RUB";
-
-const currencies: { icon: string; name: Currency }[] = [
-  { icon: "$", name: "USD" },
-  { icon: "₾", name: "GEL" },
-  { icon: "₽", name: "RUB" },
-];
+import { currencies, Currency } from "@const/currencies";
 
 export default function CurrencyPage() {
   const router = useRouter();

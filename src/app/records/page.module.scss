@@ -15,8 +15,7 @@
   height: 38px;
 
   h1 {
-    font-size: 28px;
-    font-weight: 600;
+    @include m.h1;
   }
 
   button {
