@@ -17,6 +17,7 @@ export const categories: Category[] = [
     subCategories: [
       "Groceries",
       "Snacks",
+      "Drinks",
       "Cafes & Restaurants",
       "Delivery",
       "Alcohol",
@@ -27,7 +28,7 @@ export const categories: Category[] = [
     name: "Household & Personal",
     color: "#3DB9FF",
     icon: PersonalIcon,
-    subCategories: ["Household", "Clothes", "Cosmetics"],
+    subCategories: ["Household", "Cosmetics"],
   },
   {
     id: 3,
@@ -48,7 +49,7 @@ export const categories: Category[] = [
     name: "Beauty",
     color: "#FF66E7",
     icon: BeautyIcon,
-    subCategories: ["Cosmetics", "Hairdresser"],
+    subCategories: ["Clothes", "Cosmetics", "Hairdresser"],
   },
   {
     id: 6,
@@ -62,7 +63,7 @@ export const categories: Category[] = [
     name: "Health",
     color: "#66DAFF",
     icon: HealthIcon,
-    subCategories: ["Medcine", "Doctor"],
+    subCategories: ["Medicine", "Doctor"],
   },
   {
     id: 8,

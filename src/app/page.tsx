@@ -40,7 +40,7 @@ export default function Home() {
           <div className={styles.subText}>Total {currency.name}</div>
           <div className={styles.number}>
             {currency.icon}
-            {filterByCurrency(currency.name).toFixed(2)}
+            {filterByCurrency(currency.name).toFixed(0)}
           </div>
         </div>
       ))}

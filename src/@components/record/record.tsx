@@ -11,6 +11,7 @@ export default function Record({
   convertedAmount,
   currency,
   category,
+  subCategory,
   date,
   description,
 }: RecordProps) {
@@ -32,7 +33,9 @@ export default function Record({
       )}
       <div className={styles.textBlock}>
         <div className={styles.text}>{category}</div>
-        <div className={styles.subText}>{description || <>&nbsp;</>}</div>
+        <div className={styles.subText}>
+          {description || `• ${subCategory}`}
+        </div>
       </div>
       <div className={styles.numbersBlock}>
         <div>
