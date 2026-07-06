@@ -5,6 +5,7 @@ import { recordsStore } from "../@state/records";
 import LastRecords from "@components/lastRecords/lastRecords";
 import styles from "./page.module.scss";
 import { filterByTimeStore } from "@state/filterByTime";
+import { currenciesList } from "@const/currencies";
 
 export default function Home() {
   const { records } = recordsStore();
@@ -31,21 +32,18 @@ export default function Home() {
     <div className={styles.container}>
       <FilterMonthSwitcher />
       <div className={styles.total}>
-        <div className={styles.subText}>Total in USD</div>
+        <div className={styles.subText}>Total expenses</div>
         <div className={styles.number}>${totalMoney}</div>
       </div>
-      <div className={styles.total}>
-        <div className={styles.subText}>Total USD</div>
-        <div className={styles.number}>${filterByCurrency("USD")}</div>
-      </div>
-      <div className={styles.total}>
-        <div className={styles.subText}>Total GEL</div>
-        <div className={styles.number}>₾{filterByCurrency("GEL")}</div>
-      </div>
-      <div className={styles.total}>
-        <div className={styles.subText}>Total RUB</div>
-        <div className={styles.number}>₽{filterByCurrency("RUB")}</div>
-      </div>
+      {currenciesList.map((currency) => (
+        <div key={currency.name} className={styles.total}>
+          <div className={styles.subText}>Total {currency.name}</div>
+          <div className={styles.number}>
+            {currency.icon}
+            {filterByCurrency(currency.name).toFixed(2)}
+          </div>
+        </div>
+      ))}
       <div>
         <div className={styles.lastRecords}>Last Records</div>
         <LastRecords />

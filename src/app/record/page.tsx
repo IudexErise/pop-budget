@@ -6,7 +6,7 @@ import { recordsStore } from "../../@state/records";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
 import { getSelectedCategory } from "@const/categories";
 import { CSSProperties, useEffect, useRef } from "react";
-import { formatDay } from "@utils/date";
+import { formatDayWithTime } from "@utils/date";
 
 export default function RecordPage() {
   const {
@@ -162,7 +162,7 @@ export default function RecordPage() {
       <section className={styles.section}>
         <div className={styles.sectionText}>
           <p className={styles.subText}>Date</p>
-          <p className={styles.text}>{formatDay(date)}</p>
+          <p className={styles.text}>{formatDayWithTime(date)}</p>
         </div>
         <button className={styles.button} onClick={openPicker}>
           <svg

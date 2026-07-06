@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
 import { recordsStore } from "@state/records";
-import { currencies, Currency } from "@const/currencies";
+import { currenciesList } from "@const/currencies";
 
 export default function CurrencyPage() {
   const router = useRouter();
   const { setCurrency } = recordsStore();
 
-  function handleSelectCurrency(currency: Currency) {
+  function handleSelectCurrency(currency: string) {
     setCurrency(currency);
     router.back();
   }
@@ -19,7 +19,7 @@ export default function CurrencyPage() {
     <div className={styles.container}>
       <HeadlineBlock headline="Select currency" onClick={() => router.back()} />
 
-      {currencies.map(({ icon, name }) => (
+      {currenciesList.map(({ icon, name }) => (
         <CurrencyCard
           key={name}
           icon={icon}
@@ -33,8 +33,8 @@ export default function CurrencyPage() {
 
 interface CurrencyCardProps {
   icon: string;
-  name: Currency;
-  onClick: (currency: Currency) => void;
+  name: string;
+  onClick: (currency: string) => void;
 }
 
 function CurrencyCard({ icon, name, onClick }: CurrencyCardProps) {

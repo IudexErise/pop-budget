@@ -90,7 +90,6 @@ export function ExpensesPieChart({
         isAnimationActive={isAnimationActive}
       />
 
-      {/* Tooltip */}
       <Tooltip
         formatter={(value, name) => [
           value!.toLocaleString("en-US", {
@@ -101,7 +100,6 @@ export function ExpensesPieChart({
         ]}
       />
 
-      {/* Центральная сумма */}
       <text
         x="50%"
         y="50%"
