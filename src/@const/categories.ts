@@ -8,7 +8,7 @@ import HealthIcon from "@components/categoryIcons/health";
 import OtherIcon from "@components/categoryIcons/other";
 import HomeIcon from "@components/categoryIcons/home";
 
-export const categories: Category[] = [
+export const categoriesList: Category[] = [
   {
     id: 1,
     name: "Food",
@@ -75,5 +75,5 @@ export const categories: Category[] = [
 ];
 
 export function getSelectedCategory(categoryName: string | null) {
-  return categories.find((c) => c.name === categoryName) ?? null;
+  return categoriesList.find((c) => c.name === categoryName) ?? null;
 }

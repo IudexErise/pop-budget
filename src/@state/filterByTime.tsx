@@ -2,16 +2,24 @@ import { create } from "zustand";
 
 interface StoreState {
   filterDate: number;
-  filterYear: number;
+  canPlusMonth: () => boolean;
   minusMonth: () => void;
   plusMonth: () => void;
-  minusYear: () => void;
-  plusYear: () => void;
 }
 
 export const filterByTimeStore = create<StoreState>()((set, get) => ({
   filterDate: Date.now(),
-  filterYear: new Date().getFullYear(),
+
+  canPlusMonth: () => {
+    const current = new Date(get().filterDate);
+    const today = new Date();
+
+    return (
+      current.getFullYear() < today.getFullYear() ||
+      (current.getFullYear() === today.getFullYear() &&
+        current.getMonth() < today.getMonth())
+    );
+  },
 
   minusMonth: () => {
     const currentDate = new Date(get().filterDate);
@@ -20,16 +28,10 @@ export const filterByTimeStore = create<StoreState>()((set, get) => ({
   },
 
   plusMonth: () => {
+    if (!get().canPlusMonth()) return;
+
     const currentDate = new Date(get().filterDate);
     currentDate.setMonth(currentDate.getMonth() + 1);
     set({ filterDate: currentDate.getTime() });
-  },
-
-  minusYear: () => {
-    set({ filterYear: get().filterYear - 1 });
-  },
-
-  plusYear: () => {
-    set({ filterYear: get().filterYear - 1 });
   },
 }));

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import HeadlineBlock from "@components/headlineBlock/headlineBlock";
-import { categories } from "../../../@const/categories";
+import { categoriesList } from "../../../@const/categories";
 import { Category } from "types/category";
 import { recordsStore } from "@state/records";
 
@@ -13,7 +13,7 @@ export default function CategoryPage() {
   return (
     <div className={styles.container}>
       <HeadlineBlock headline="Select category" onClick={() => router.back()} />
-      {categories.map((category) => (
+      {categoriesList.map((category) => (
         <CategoryCard key={category.id} {...category} />
       ))}
     </div>

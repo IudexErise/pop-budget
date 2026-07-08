@@ -2,7 +2,7 @@ import { PieChart, Pie, Tooltip } from "recharts";
 import { useMemo } from "react";
 
 import { recordsStore } from "@state/records";
-import { categories } from "@const/categories";
+import { categoriesList } from "@const/categories";
 import { filterByTimeStore } from "@state/filterByTime";
 import { getCategoryStatistics } from "@functions/sortCategories";
 
@@ -34,7 +34,8 @@ export function ExpensesPieChart() {
         name: category.category,
         value: category.total,
         fill:
-          categories.find((c) => c.name === category.category)?.color ?? "#ccc",
+          categoriesList.find((c) => c.name === category.category)?.color ??
+          "#ccc",
       })),
     [statistics],
   );

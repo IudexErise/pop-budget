@@ -4,7 +4,8 @@ import { filterByTimeStore } from "@state/filterByTime";
 import styles from "./filterByTimeSwitcher.module.scss";
 
 export default function FilterByTimeSwitcher() {
-  const { filterDate, minusMonth, plusMonth } = filterByTimeStore();
+  const { filterDate, minusMonth, plusMonth, canPlusMonth } =
+    filterByTimeStore();
 
   const formatted = new Date(filterDate).toLocaleDateString("en-EN", {
     year: "numeric",
@@ -30,7 +31,11 @@ export default function FilterByTimeSwitcher() {
         </svg>
       </button>
       <div className={styles.date}>{formatted}</div>
-      <button className={styles.button} onClick={plusMonth}>
+      <button
+        className={styles.button}
+        onClick={plusMonth}
+        disabled={!canPlusMonth()}
+      >
         <svg
           width="6"
           height="11"

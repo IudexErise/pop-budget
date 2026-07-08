@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { convertCurrency } from "@functions/convertCurrency";
+import { currenciesList } from "@const/currencies";
+import { categoriesList } from "@const/categories";
 
 export interface RecordProps {
   id: number;
@@ -40,13 +42,17 @@ interface StoreState {
   deleteRecord: (id: number) => void;
 }
 
+const DEFAULT_CURRENCY = currenciesList[0].name;
+const DEFAULT_CATEGORY = categoriesList[0].name;
+const DEFAULT_SUB_CATEGORY = categoriesList[0].subCategories[0];
+
 export const recordsStore = create<StoreState>()(
   persist(
     (set, get) => ({
       amount: "",
-      currency: "USD",
-      category: "Other",
-      subCategory: "Unexpected",
+      currency: DEFAULT_CURRENCY,
+      category: DEFAULT_CATEGORY,
+      subCategory: DEFAULT_SUB_CATEGORY,
       description: "",
       date: Date.now(),
 
@@ -83,9 +89,9 @@ export const recordsStore = create<StoreState>()(
           mode: "create",
           editedRecordId: null,
           amount: "",
-          currency: "USD",
-          category: "Other",
-          subCategory: "Unexpected",
+          currency: DEFAULT_CURRENCY,
+          category: DEFAULT_CATEGORY,
+          subCategory: DEFAULT_SUB_CATEGORY,
           description: "",
           date: Date.now(),
         }),
@@ -138,9 +144,9 @@ export const recordsStore = create<StoreState>()(
           mode: "create",
           editedRecordId: null,
           amount: "",
-          currency: "USD",
-          category: "Other",
-          subCategory: "Unexpected",
+          currency: DEFAULT_CURRENCY,
+          category: DEFAULT_CATEGORY,
+          subCategory: DEFAULT_SUB_CATEGORY,
           description: "",
           date: Date.now(),
         });
