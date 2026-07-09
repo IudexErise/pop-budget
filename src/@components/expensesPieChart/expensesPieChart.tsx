@@ -49,9 +49,9 @@ export function ExpensesPieChart() {
 
   return (
     <PieChart
-      width={320}
-      height={320}
-      style={{ maxWidth: "100%", aspectRatio: 1 }}
+      width={250}
+      height={250}
+      style={{ maxWidth: "100%", aspectRatio: 1, alignSelf: "center" }}
     >
       <Pie
         data={data}
