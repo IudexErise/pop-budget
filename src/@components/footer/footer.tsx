@@ -3,6 +3,8 @@
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./footer.module.scss";
 import { recordsStore } from "@state/records";
+import popcat from "../../../public/popcat.svg";
+import Image from "next/image";
 
 interface ButtonProps {
   icon: React.ReactNode;
@@ -78,21 +80,7 @@ export default function Footer() {
         path="/records"
       />
       <button className={styles.create} onClick={() => createRecord()}>
-        <svg
-          width="51"
-          height="51"
-          viewBox="0 0 51 51"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="51" height="51" rx="25.5" fill="#6A66FF" />
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M25.5 17.2656C25.9401 17.2656 26.2969 17.6224 26.2969 18.0625V24.7031H32.9375C33.3776 24.7031 33.7344 25.0599 33.7344 25.5C33.7344 25.9401 33.3776 26.2969 32.9375 26.2969H26.2969V32.9375C26.2969 33.3776 25.9401 33.7344 25.5 33.7344C25.0599 33.7344 24.7031 33.3776 24.7031 32.9375V26.2969H18.0625C17.6224 26.2969 17.2656 25.9401 17.2656 25.5C17.2656 25.0599 17.6224 24.7031 18.0625 24.7031H24.7031V18.0625C24.7031 17.6224 25.0599 17.2656 25.5 17.2656Z"
-            fill="white"
-          />
-        </svg>
+        <Image src={popcat} alt="+" width="65" height="65" />
       </button>
       <FooterButton
         icon={

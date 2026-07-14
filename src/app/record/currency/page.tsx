@@ -12,12 +12,15 @@ export default function CurrencyPage() {
 
   function handleSelectCurrency(currency: string) {
     setCurrency(currency);
-    router.back();
+    router.push("/record");
   }
 
   return (
     <div className={styles.container}>
-      <HeadlineBlock headline="Select currency" onClick={() => router.back()} />
+      <HeadlineBlock
+        headline="Select currency"
+        onClick={() => router.push("/record")}
+      />
 
       {currenciesList.map(({ icon, name }) => (
         <CurrencyCard

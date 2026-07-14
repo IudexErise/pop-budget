@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "My Budget App",
-    short_name: "MBA PWA",
-    description: "A Progressive Web App built with Next.js",
+    name: "Pop Budget App",
+    short_name: "Pop Budget",
+    description: "Multicurrency budget app",
     start_url: "/",
     display: "fullscreen",
     background_color: "rgba(8, 9, 12, 1)",

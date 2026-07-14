@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 import EnterAmount from "@components/enterAmount/enterAmount";
+import HeadlineBlock from "@components/headlineBlock/headlineBlock";
 
 export default function Amount() {
   const router = useRouter();
@@ -10,8 +11,11 @@ export default function Amount() {
   return (
     <div className={styles.container}>
       <div className={styles.topBlock}>
-        <h1 className={styles.headline}>Amount</h1>
-        <button className={styles.close} onClick={() => router.back()}>
+        <HeadlineBlock
+          headline="Amount"
+          onClick={() => router.push("/record")}
+        />
+        <button className={styles.close} onClick={() => router.push("/record")}>
           <svg
             width="21"
             height="21"

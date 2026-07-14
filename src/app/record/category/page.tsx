@@ -12,7 +12,10 @@ export default function CategoryPage() {
 
   return (
     <div className={styles.container}>
-      <HeadlineBlock headline="Select category" onClick={() => router.back()} />
+      <HeadlineBlock
+        headline="Select category"
+        onClick={() => router.push("/record")}
+      />
       {categoriesList.map((category) => (
         <CategoryCard key={category.id} {...category} />
       ))}
@@ -32,7 +35,7 @@ export function CategoryCard({
   function handleClick() {
     setCategory(name);
     setSubCategory(subCategories[0]);
-    router.back();
+    router.push("/record");
   }
 
   return (
