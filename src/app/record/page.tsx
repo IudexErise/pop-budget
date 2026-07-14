@@ -74,7 +74,7 @@ export default function RecordPage() {
         className={styles.amountBlock}
         onClick={() => router.push("record/amount")}
       >
-        <span className={styles.subText}>Expense</span>
+        <span className={styles.subText}>Amount</span>
         <div className={styles.amount}>{amount === "" ? 0 : amount}</div>
       </section>
 
