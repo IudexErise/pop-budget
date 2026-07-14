@@ -43,16 +43,13 @@
 .subText {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
-  user-select: none;
 }
 
 .text {
   font-size: 16px;
-  user-select: none;
 
   &__uppercase {
     text-transform: uppercase;
-    user-select: none;
   }
 }
 
