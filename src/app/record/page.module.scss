@@ -76,11 +76,11 @@
 
 .subCategories {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  @include m.container;
+  width: 100%;
+  max-width: 360px;
 }
 
 %subCategory {
@@ -98,7 +98,7 @@
 
 .subCategory {
   @extend %subCategory;
-  border: 1px solid color-mix(in srgb, var(--color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color) 20%, transparent);
 }
 
 .subCategoryActive {
