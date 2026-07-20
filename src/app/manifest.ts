@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Pop Budget App",
+    name: "Pop Budget",
     short_name: "Pop Budget",
     description: "Multicurrency budget app",
     start_url: "/",

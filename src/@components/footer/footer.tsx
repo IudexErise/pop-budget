@@ -80,7 +80,7 @@ export default function Footer() {
         path="/records"
       />
       <button className={styles.create} onClick={() => createRecord()}>
-        <Image src={popcat} alt="+" width="65" height="65" />
+        <Image src={popcat} alt="+" width="65" height="65" loading="eager" />
       </button>
       <FooterButton
         icon={
@@ -121,8 +121,8 @@ export default function Footer() {
             />
           </svg>
         }
-        text="Menu"
-        path="/menu"
+        text="Settings"
+        path="/settings"
       />
     </footer>
   );

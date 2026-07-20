@@ -18,7 +18,7 @@ export const categoriesList: Category[] = [
       "Groceries",
       "Snacks",
       "Drinks",
-      "Cafes & Restaurants",
+      "Eating out",
       "Delivery",
       "Alcohol",
     ],
