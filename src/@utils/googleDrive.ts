@@ -1,4 +1,7 @@
 export const SCOPES = "https://www.googleapis.com/auth/drive.appdata";
+const DRIVE_API = "https://www.googleapis.com/drive/v3";
+const DRIVE_UPLOAD_API = "https://www.googleapis.com/upload/drive/v3";
+const FILE_NAME = "popBudget.json";
 
 declare global {
   interface Window {
@@ -9,13 +12,15 @@ declare global {
             client_id: string;
             scope: string;
             callback: (response: TokenResponse) => void;
-          }): {
-            requestAccessToken(options?: { prompt?: "" | "consent" }): void;
-          };
+          }): TokenClient;
         };
       };
     };
   }
+}
+
+interface TokenClient {
+  requestAccessToken(options?: { prompt?: "" | "consent" }): void;
 }
 
 interface TokenResponse {
@@ -39,11 +44,22 @@ interface CreateFileResponse {
 
 let accessToken: string | null = null;
 
-export async function signIn(): Promise<string> {
+const EMPTY_BACKUP = {
+  version: 1,
+  savedAt: null,
+  records: [],
+};
+
+export function isConnected() {
+  return accessToken !== null;
+}
+
+export async function signIn(force = false): Promise<string> {
   return new Promise((resolve, reject) => {
     const client = window.google.accounts.oauth2.initTokenClient({
       client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
       scope: SCOPES,
+
       callback: (response: TokenResponse) => {
         if (response.error) {
           reject(new Error(response.error));
@@ -51,12 +67,13 @@ export async function signIn(): Promise<string> {
         }
 
         accessToken = response.access_token;
+
         resolve(response.access_token);
       },
     });
 
     client.requestAccessToken({
-      prompt: accessToken ? "" : "consent",
+      prompt: force ? "consent" : "",
     });
   });
 }
@@ -73,10 +90,10 @@ function authHeaders(): HeadersInit {
 
 async function findFile(): Promise<DriveFile | null> {
   const res = await fetch(
-    "https://www.googleapis.com/drive/v3/files?" +
+    `${DRIVE_API}/files?` +
       new URLSearchParams({
         spaces: "appDataFolder",
-        q: "name='popBudget.json'",
+        q: `name='${FILE_NAME}'`,
         fields: "files(id,name)",
       }),
     {
@@ -95,7 +112,7 @@ async function findFile(): Promise<DriveFile | null> {
 
 async function createFile(): Promise<CreateFileResponse> {
   const metadata = {
-    name: "popBudget.json",
+    name: FILE_NAME,
     parents: ["appDataFolder"],
   };
 
@@ -110,26 +127,16 @@ async function createFile(): Promise<CreateFileResponse> {
 
   form.append(
     "file",
-    new Blob(
-      [
-        JSON.stringify({
-          records: [],
-        }),
-      ],
-      {
-        type: "application/json",
-      },
-    ),
+    new Blob([JSON.stringify(EMPTY_BACKUP)], {
+      type: "application/json",
+    }),
   );
 
-  const res = await fetch(
-    "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",
-    {
-      method: "POST",
-      headers: authHeaders(),
-      body: form,
-    },
-  );
+  const res = await fetch(`${DRIVE_UPLOAD_API}/files?uploadType=multipart`, {
+    method: "POST",
+    headers: authHeaders(),
+    body: form,
+  });
 
   if (!res.ok) {
     throw new Error(await res.text());
@@ -139,24 +146,25 @@ async function createFile(): Promise<CreateFileResponse> {
 }
 
 export async function getFileId(): Promise<string> {
-  let file = await findFile();
+  const file = await findFile();
 
-  if (!file) {
-    file = await createFile();
+  if (file) {
+    return file.id;
   }
 
-  return file.id;
+  const newFile = await createFile();
+
+  return newFile.id;
 }
 
 export async function loadData<T>(): Promise<T> {
+  await ensureSignedIn();
+
   const id = await getFileId();
 
-  const res = await fetch(
-    `https://www.googleapis.com/drive/v3/files/${id}?alt=media`,
-    {
-      headers: authHeaders(),
-    },
-  );
+  const res = await fetch(`${DRIVE_API}/files/${id}?alt=media`, {
+    headers: authHeaders(),
+  });
 
   if (!res.ok) {
     throw new Error(await res.text());
@@ -166,21 +174,30 @@ export async function loadData<T>(): Promise<T> {
 }
 
 export async function saveData<T>(data: T): Promise<void> {
+  await ensureSignedIn();
+
   const id = await getFileId();
 
-  const res = await fetch(
-    `https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`,
-    {
-      method: "PATCH",
-      headers: {
-        ...authHeaders(),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+  const res = await fetch(`${DRIVE_UPLOAD_API}/files/${id}?uploadType=media`, {
+    method: "PATCH",
+    headers: {
+      ...authHeaders(),
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify(data),
+  });
 
   if (!res.ok) {
     throw new Error(await res.text());
   }
+}
+
+async function ensureSignedIn() {
+  if (!accessToken) {
+    await signIn();
+  }
+}
+
+export function disconnect() {
+  accessToken = null;
 }
