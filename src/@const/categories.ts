@@ -42,7 +42,7 @@ export const categoriesList: Category[] = [
     name: "Entertainment",
     color: "#FF9466",
     icon: EntertainmentIcon,
-    subCategories: ["Events", "Concerts", "Online"],
+    subCategories: ["Valorant", "Events", "Concerts", "Online"],
   },
   {
     id: 5,

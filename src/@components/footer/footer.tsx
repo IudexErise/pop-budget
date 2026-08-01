@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./footer.module.scss";
 import { recordsStore } from "@state/records";
-import popcat from "../../../public/popcat.png";
+import popcat from "../../../public/popcat2.png";
 import Image from "next/image";
 
 interface ButtonProps {

@@ -39,18 +39,20 @@ export default function Home() {
         <div className={styles.subText}>Total expenses</div>
         <div className={styles.number}>{totalMoney} $</div>
       </div>
-      {currenciesList.map((currency) => (
-        <div key={currency.name} className={styles.total}>
-          <div className={styles.subText}>Total {currency.name}</div>
-          <div className={styles.number}>
-            {filterByCurrency(currency.name).toLocaleString("ru-RU", {
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
-            })}{" "}
-            {currency.icon}
+      {currenciesList
+        .filter((currency) => filterByCurrency(currency.name) > 0)
+        .map((currency) => (
+          <div key={currency.name} className={styles.total}>
+            <div className={styles.subText}>Total {currency.name}</div>
+            <div className={styles.number}>
+              {filterByCurrency(currency.name).toLocaleString("ru-RU", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              })}{" "}
+              {currency.icon}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       <div>
         <div className={styles.lastRecords}>Last Records</div>
         <LastRecords />
