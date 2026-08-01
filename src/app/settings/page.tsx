@@ -28,6 +28,7 @@ export default function Settings() {
       setConnected(true);
     } catch (e) {
       console.error(e);
+      alert("Failed to login via Google. Try disabling an ad blocker");
     }
   }
 
