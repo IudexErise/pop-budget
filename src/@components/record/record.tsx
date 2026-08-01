@@ -26,6 +26,19 @@ export default function Record({
     router.push("/record");
   }
 
+  const formattedAmount = Number(amount).toLocaleString("en-EN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  const formattedConvertedAmount = Number(convertedAmount).toLocaleString(
+    "en-EN",
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  );
+
   return (
     <div className={styles.container} onClick={() => handleClick()}>
       {selectedCategory && (
@@ -33,20 +46,16 @@ export default function Record({
       )}
       <div className={styles.textBlock}>
         <div className={styles.text}>{category}</div>
-        <div className={styles.subText}>
-          {description || `• ${subCategory}`}
-        </div>
+        <div className={styles.subText}>{`• ${subCategory}`}</div>
+        <div className={styles.subText__white}>{description}</div>
       </div>
       <div className={styles.numbersBlock}>
-        <div>
-          <span className={styles.subText}>-{convertedAmount} USD </span>
-          <span> </span>
-          <span className={styles.amount}>
-            -{amount} {currency}
-          </span>
+        <div className={styles.amount}>
+          {formattedAmount} {currency}
         </div>
-        <div className={styles.subText}>
-          {new Date(date).toLocaleDateString()}
+        <div className={styles.subText}>{formattedConvertedAmount} USD</div>
+        <div className={styles.subText__white}>
+          {new Date(date).toLocaleDateString("ru-RU")}
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function RecordPage() {
 
   const onSave = async () => {
     await saveRecord();
-    router.replace("/");
+    router.replace(mode === "create" ? "/record" : "/records");
   };
 
   const onCancel = () => {
@@ -63,6 +63,11 @@ export default function RecordPage() {
     router.replace("/records");
   };
 
+  const formattedAmount = Number(amount).toLocaleString("en-EN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
   return (
     <div className={styles.container}>
       {mode === "create" ? (
@@ -75,7 +80,9 @@ export default function RecordPage() {
         onClick={() => router.push("record/amount")}
       >
         <span className={styles.subText}>Amount</span>
-        <div className={styles.amount}>{amount === "" ? 0 : amount}</div>
+        <div className={styles.amount}>
+          {amount === "" ? 0 : formattedAmount}
+        </div>
       </section>
 
       <section className={styles.section}>

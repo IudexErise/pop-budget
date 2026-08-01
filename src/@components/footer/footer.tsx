@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./footer.module.scss";
 import { recordsStore } from "@state/records";
-import popcat from "../../../public/popcat.svg";
+import popcat from "../../../public/popcat.png";
 import Image from "next/image";
 
 interface ButtonProps {
@@ -80,7 +80,7 @@ export default function Footer() {
         path="/records"
       />
       <button className={styles.create} onClick={() => createRecord()}>
-        <Image src={popcat} alt="+" width="65" height="65" loading="eager" />
+        <Image src={popcat} alt="+" width="50" height="50" loading="eager" />
       </button>
       <FooterButton
         icon={

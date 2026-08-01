@@ -17,9 +17,13 @@ export default function Home() {
         new Date(filterDate).getFullYear() &&
       new Date(record.date).getMonth() === new Date(filterDate).getMonth(),
   );
+
   const totalMoney = filteredRecords
     .reduce((sum, record) => sum + +record.convertedAmount, 0)
-    .toFixed(2);
+    .toLocaleString("ru-RU", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
 
   function filterByCurrency(currency: string) {
     const filteredAmount = filteredRecords
@@ -33,14 +37,17 @@ export default function Home() {
       <FilterMonthSwitcher />
       <div className={styles.total}>
         <div className={styles.subText}>Total expenses</div>
-        <div className={styles.number}>${totalMoney}</div>
+        <div className={styles.number}>{totalMoney} $</div>
       </div>
       {currenciesList.map((currency) => (
         <div key={currency.name} className={styles.total}>
           <div className={styles.subText}>Total {currency.name}</div>
           <div className={styles.number}>
+            {filterByCurrency(currency.name).toLocaleString("ru-RU", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            })}{" "}
             {currency.icon}
-            {filterByCurrency(currency.name).toFixed(0)}
           </div>
         </div>
       ))}

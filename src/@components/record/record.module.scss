@@ -26,6 +26,11 @@
 .subText {
   font-size: 12px;
   color: rgb(255, 255, 255, 0.5);
+
+  &__white {
+    font-size: 12px;
+    color: white;
+  }
 }
 
 .amount {
