@@ -8,6 +8,9 @@ import GoogleScript from "@functions/googleScript";
 export const metadata: Metadata = {
   title: "Pop Budget",
   description: "Multicurrency budget app",
+  icons: {
+    icon: "/appicon.png",
+  },
 };
 
 const inter = Inter({
