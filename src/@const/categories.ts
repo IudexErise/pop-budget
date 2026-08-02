@@ -18,17 +18,16 @@ export const categoriesList: Category[] = [
       "Groceries",
       "Snacks",
       "Drinks",
-      "Eating out",
-      "Delivery",
+      "Restaurants & Deliveries",
       "Alcohol",
     ],
   },
   {
     id: 2,
-    name: "Household & Personal",
+    name: "Household",
     color: "#3DB9FF",
     icon: PersonalIcon,
-    subCategories: ["Household", "Cosmetics"],
+    subCategories: ["Household"],
   },
   {
     id: 3,
@@ -42,7 +41,7 @@ export const categoriesList: Category[] = [
     name: "Entertainment",
     color: "#FF9466",
     icon: EntertainmentIcon,
-    subCategories: ["Valorant", "Events", "Concerts", "Online"],
+    subCategories: ["VALORANT", "Events", "Concerts", "Online"],
   },
   {
     id: 5,
@@ -56,7 +55,7 @@ export const categoriesList: Category[] = [
     name: "Home",
     color: "#DB3C3C",
     icon: HomeIcon,
-    subCategories: ["Rent", "Utulities", "Mobile", "Internet"],
+    subCategories: ["Rent", "Utilities", "Mobile & Internet"],
   },
   {
     id: 7,
@@ -70,7 +69,7 @@ export const categoriesList: Category[] = [
     name: "Other",
     color: "#afb7c0",
     icon: OtherIcon,
-    subCategories: ["Unexpected", "Planned"],
+    subCategories: ["Planned", "Unexpected", "Gifts"],
   },
 ];
 
