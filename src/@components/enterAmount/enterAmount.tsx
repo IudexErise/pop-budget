@@ -4,6 +4,7 @@ import { recordsStore } from "@state/records";
 import styles from "./enterAmount.module.scss";
 import { useMemo, useState } from "react";
 import { Parser } from "expr-eval";
+import { formatAmount } from "../../@functions/convertCurrency";
 
 interface EnterAmountProps {
   handleSave: () => void;
@@ -99,7 +100,7 @@ export default function EnterAmount({ handleSave }: EnterAmountProps) {
     const parser = new Parser();
     try {
       const value = parser.evaluate(expression);
-      return Number.isFinite(value) ? value : null;
+      return Number.isFinite(value) ? formatAmount(value) : null;
     } catch {
       return null;
     }

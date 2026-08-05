@@ -7,6 +7,7 @@ import HeadlineBlock from "@components/headlineBlock/headlineBlock";
 import { getSelectedCategory } from "@const/categories";
 import { CSSProperties, useEffect, useRef } from "react";
 import { formatDayWithTime } from "@utils/date";
+import { formatAmount } from "../../@functions/convertCurrency";
 
 export default function RecordPage() {
   const {
@@ -63,11 +64,6 @@ export default function RecordPage() {
     router.replace("/records");
   };
 
-  const formattedAmount = Number(amount).toLocaleString("en-EN", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
   return (
     <div className={styles.container}>
       {mode === "create" ? (
@@ -81,7 +77,7 @@ export default function RecordPage() {
       >
         <span className={styles.subText}>Amount</span>
         <div className={styles.amount}>
-          {amount === "" ? 0 : formattedAmount}
+          {amount === "" ? 0 : formatAmount(amount)}
         </div>
       </section>
 

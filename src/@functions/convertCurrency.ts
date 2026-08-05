@@ -3,7 +3,7 @@ import axios from "axios";
 export async function convertCurrency(
   currency: string,
   amount: string,
-  date: number
+  date: number,
 ) {
   try {
     const dateInfo = new Date(date);
@@ -14,11 +14,11 @@ export async function convertCurrency(
     let res;
     if (dateInfo.toLocaleDateString() === new Date().toLocaleDateString()) {
       res = await axios.get(
-        `https://api.currencyapi.com/v3/latest?apikey=${ApiKey}&currencies=USD&base_currency=${currency}`
+        `https://api.currencyapi.com/v3/latest?apikey=${ApiKey}&currencies=USD&base_currency=${currency}`,
       );
     } else {
       res = await axios.get(
-        `https://api.currencyapi.com/v3/historical?apikey=${ApiKey}&currencies=USD&base_currency=${currency}&date=${year}-${month}-${day}`
+        `https://api.currencyapi.com/v3/historical?apikey=${ApiKey}&currencies=USD&base_currency=${currency}&date=${year}-${month}-${day}`,
       );
     }
     return (res.data.data.USD.value * Number(amount)).toFixed(2);
@@ -31,4 +31,16 @@ export async function convertCurrency(
     alert("Неизвестная ошибка");
     return "0";
   }
+}
+
+export function formatAmount(
+  value: number | string,
+  options?: Intl.NumberFormatOptions,
+  locale = "en-US",
+) {
+  return Number(value).toLocaleString(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    ...options,
+  });
 }

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./record.module.scss";
 import { RecordProps, recordsStore } from "@state/records";
 import { getSelectedCategory } from "@const/categories";
+import { formatAmount } from "@functions/convertCurrency";
 
 export default function Record({
   id,
@@ -26,19 +27,6 @@ export default function Record({
     router.push("/record");
   }
 
-  const formattedAmount = Number(amount).toLocaleString("en-EN", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
-  const formattedConvertedAmount = Number(convertedAmount).toLocaleString(
-    "en-EN",
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    },
-  );
-
   return (
     <div className={styles.container} onClick={() => handleClick()}>
       {selectedCategory && (
@@ -51,9 +39,11 @@ export default function Record({
       </div>
       <div className={styles.numbersBlock}>
         <div className={styles.amount}>
-          {formattedAmount} {currency}
+          {formatAmount(amount)} {currency}
         </div>
-        <div className={styles.subText}>{formattedConvertedAmount} USD</div>
+        <div className={styles.subText}>
+          {formatAmount(convertedAmount)} USD
+        </div>
         <div className={styles.subText__white}>
           {new Date(date).toLocaleDateString("ru-RU")}
         </div>
