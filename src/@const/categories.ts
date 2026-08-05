@@ -27,7 +27,7 @@ export const categoriesList: Category[] = [
     name: "Household",
     color: "#3DB9FF",
     icon: PersonalIcon,
-    subCategories: ["Household"],
+    subCategories: ["Cleaning products", "Dishes"],
   },
   {
     id: 3,

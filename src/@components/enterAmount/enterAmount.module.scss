@@ -12,23 +12,35 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+.amountContainer {
+  margin-top: 10px;
+  min-height: 120px;
+}
+
 .amount {
   font-weight: 600;
-  font-size: 46px;
+  font-size: 40px;
   color: v.$color-red;
-  margin-top: 10px;
+}
+
+.result {
+  font-weight: 600;
+  font-size: 40px;
+  color: v.$color-red;
+  text-align: center;
 }
 
 .buttons {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid v.$color-grey;
   margin: 25px 0;
 }
 
 .button {
-  width: 120px;
-  height: 80px;
+  width: 100%;
+  aspect-ratio: 1;
   font-weight: 600;
   font-size: 24px;
   background-color: transparent;
@@ -41,6 +53,11 @@
       fill: v.$color-red;
     }
   }
+}
+
+.reset {
+  @include m.buttonDelete;
+  margin-bottom: 20px;
 }
 
 .save {
