@@ -100,7 +100,7 @@ export default function EnterAmount({ handleSave }: EnterAmountProps) {
     const parser = new Parser();
     try {
       const value = parser.evaluate(expression);
-      return Number.isFinite(value) ? formatAmount(value) : null;
+      return Number.isFinite(value) ? value : null;
     } catch {
       return null;
     }
