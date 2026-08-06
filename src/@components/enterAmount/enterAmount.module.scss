@@ -15,27 +15,35 @@
 .amountContainer {
   margin-top: 10px;
   min-height: 120px;
+  width: 100%;
 }
 
 .amount {
   font-weight: 600;
   font-size: 40px;
   color: v.$color-red;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .result {
   font-weight: 600;
   font-size: 40px;
   color: v.$color-red;
-  text-align: center;
+  text-align: right;
+  border-top: 3px solid v.$color-red;
+  width: 100%;
 }
 
 .buttons {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 80px);
   border-top: 1px solid v.$color-grey;
+  border-bottom: 1px solid v.$color-grey;
   margin: 25px 0;
+  justify-content: center;
+  gap: 10px;
 }
 
 .button {
@@ -55,11 +63,19 @@
   }
 }
 
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .reset {
   @include m.buttonDelete;
-  margin-bottom: 20px;
+  width: 48%;
 }
 
 .save {
   @include m.buttonSave;
+  margin-bottom: 20px;
+  width: 48%;
 }

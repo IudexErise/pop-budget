@@ -4,7 +4,6 @@ import { recordsStore } from "@state/records";
 import styles from "./enterAmount.module.scss";
 import { useMemo, useState } from "react";
 import { Parser } from "expr-eval";
-import { formatAmount } from "../../@functions/convertCurrency";
 
 interface EnterAmountProps {
   handleSave: () => void;
@@ -116,11 +115,12 @@ export default function EnterAmount({ handleSave }: EnterAmountProps) {
 
   return (
     <div className={styles.container}>
-      <p className={styles.subText}>Amount</p>
       <div className={styles.amountContainer}>
         <div className={styles.amount}>{expression || "0"}</div>
-        {expression !== "" && preview !== null && (
+        {expression !== "" && preview !== null ? (
           <div className={styles.result}>={preview}</div>
+        ) : (
+          <div className={styles.result}>=</div>
         )}
       </div>
       <div className={styles.buttons}>
@@ -155,21 +155,24 @@ export default function EnterAmount({ handleSave }: EnterAmountProps) {
           </button>
         ))}
       </div>
-      <button
-        className={styles.reset}
-        onClick={() => {
-          setExpression("");
-        }}
-      >
-        Reset
-      </button>
-      <button
-        className={styles.save}
-        onClick={handleSubmit}
-        disabled={preview === null}
-      >
-        Save
-      </button>
+      <div className={styles.buttonsContainer}>
+        {" "}
+        <button
+          className={styles.reset}
+          onClick={() => {
+            setExpression("");
+          }}
+        >
+          Reset
+        </button>{" "}
+        <button
+          className={styles.save}
+          onClick={handleSubmit}
+          disabled={preview === null}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 }
