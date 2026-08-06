@@ -214,16 +214,26 @@ export default function RecordPage() {
         </div>
       </section>
 
-      <section className={styles.buttonsBlock}>
+      {mode === "create" ? (
         <button onClick={() => onSave()} className={styles.save}>
-          {mode === "create" ? "Save" : "Update"}
+          Save
         </button>
-        {mode === "edit" && (
-          <button onClick={() => onDelete()} className={styles.delete}>
+      ) : (
+        <section className={styles.buttonsBlock}>
+          <button
+            onClick={() => onDelete()}
+            className={`${styles.delete} ${styles.small}`}
+          >
             Delete
           </button>
-        )}
-      </section>
+          <button
+            onClick={() => onSave()}
+            className={`${styles.save} ${styles.small}`}
+          >
+            Update
+          </button>
+        </section>
+      )}
     </div>
   );
 }

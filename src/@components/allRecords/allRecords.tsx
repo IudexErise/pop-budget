@@ -5,6 +5,7 @@ import styles from "./allRecords.module.scss";
 import { recordsStore } from "@state/records";
 import Record from "@components/record/record";
 import { formatDay } from "@utils/date";
+import { formatAmount } from "../../@functions/convertCurrency";
 
 const getDayStartTs = (timestamp: number) => {
   const d = new Date(timestamp);
@@ -37,6 +38,10 @@ export default function AllRecords() {
       .map(([dayTs, dayRecords]) => ({
         dayTs: Number(dayTs),
         formattedDay: formatDay(Number(dayTs)),
+        total: dayRecords.reduce(
+          (sum, record) => sum + Number(record.convertedAmount),
+          0,
+        ),
         records: [...dayRecords].sort((a, b) => b.date - a.date),
       }));
   }, [records]);
@@ -45,7 +50,12 @@ export default function AllRecords() {
     <div className={styles.container}>
       {groupedRecords.map((group) => (
         <section key={group.dayTs} className={styles.dayBlock}>
-          <h2 className={styles.dayTitle}>{group.formattedDay}</h2>
+          <div className={styles.headerBlock}>
+            <h2 className={styles.dayTitle}>{group.formattedDay}</h2>
+            <span className={styles.dayTotal}>
+              ${formatAmount(group.total)}
+            </span>
+          </div>
 
           {group.records.map((record) => (
             <Record

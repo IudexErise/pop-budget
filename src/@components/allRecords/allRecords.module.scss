@@ -8,6 +8,11 @@
   margin-bottom: 15px;
 }
 
+.headerBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
 .dayBlock {
   margin-bottom: 25px;
   display: flex;
@@ -16,6 +21,12 @@
 }
 
 .dayTitle {
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(255, 255, 255, 0.5);
+}
+
+.dayTotal {
+  font-size: 14px;
+  color: v.$color-red;
+  opacity: 0.8;
 }

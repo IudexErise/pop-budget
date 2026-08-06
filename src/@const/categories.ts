@@ -41,7 +41,7 @@ export const categoriesList: Category[] = [
     name: "Entertainment",
     color: "#FF9466",
     icon: EntertainmentIcon,
-    subCategories: ["VALORANT", "Events", "Concerts", "Online"],
+    subCategories: ["VALORANT", "Concerts & Theater", "Online", "Events"],
   },
   {
     id: 5,

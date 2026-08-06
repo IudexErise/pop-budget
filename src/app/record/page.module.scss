@@ -145,9 +145,8 @@
 
 .buttonsBlock {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 15px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .save {
@@ -156,4 +155,8 @@
 
 .delete {
   @include m.buttonDelete;
+}
+
+.small {
+  width: 48%;
 }
