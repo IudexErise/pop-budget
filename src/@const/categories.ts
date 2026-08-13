@@ -27,7 +27,12 @@ export const categoriesList: Category[] = [
     name: "Household",
     color: "#3DB9FF",
     icon: PersonalIcon,
-    subCategories: ["Cleaning products", "Kitchen products", "Dishes"],
+    subCategories: [
+      "Bathroom supplies",
+      "Kitchen supplies",
+      "Personal",
+      "Kitchenware",
+    ],
   },
   {
     id: 3,
@@ -55,7 +60,7 @@ export const categoriesList: Category[] = [
     name: "Home",
     color: "#DB3C3C",
     icon: HomeIcon,
-    subCategories: ["Rent", "Utilities", "Mobile & Internet"],
+    subCategories: ["Rent", "Utilities", "Mobile & Internet", "Subscriptions"],
   },
   {
     id: 7,
@@ -69,7 +74,7 @@ export const categoriesList: Category[] = [
     name: "Other",
     color: "#afb7c0",
     icon: OtherIcon,
-    subCategories: ["Planned", "Unexpected", "Gifts"],
+    subCategories: ["Planned", "Unexpected", "Gifts", "Taxes"],
   },
 ];
 
