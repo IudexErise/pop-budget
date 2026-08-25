@@ -74,7 +74,7 @@ export const categoriesList: Category[] = [
     name: "Other",
     color: "#afb7c0",
     icon: OtherIcon,
-    subCategories: ["Planned", "Unexpected", "Gifts", "Taxes"],
+    subCategories: ["Planned", "Unexpected", "Gifts", "Japan"],
   },
 ];
 
