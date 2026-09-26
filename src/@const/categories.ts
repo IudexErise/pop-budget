@@ -27,12 +27,7 @@ export const categoriesList: Category[] = [
     name: "Household",
     color: "#3DB9FF",
     icon: PersonalIcon,
-    subCategories: [
-      "Bathroom supplies",
-      "Kitchen supplies",
-      "Personal",
-      "Kitchenware",
-    ],
+    subCategories: ["Supplies", "Personal", "Kitchenware"],
   },
   {
     id: 3,
@@ -46,7 +41,7 @@ export const categoriesList: Category[] = [
     name: "Entertainment",
     color: "#FF9466",
     icon: EntertainmentIcon,
-    subCategories: ["VALORANT", "Concerts & Theater", "Online", "Events"],
+    subCategories: ["VALORANT", "Concerts & Theater", "Games", "Events"],
   },
   {
     id: 5,
