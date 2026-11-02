@@ -3,4 +3,5 @@ export const currenciesList: { icon: string; name: string }[] = [
   { icon: "₽", name: "RUB" },
   { icon: "$", name: "USD" },
   { icon: "€", name: "EUR" },
+  { icon: "¥", name: "JPY" },
 ];
